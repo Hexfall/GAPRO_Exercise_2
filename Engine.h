@@ -3,6 +3,8 @@
 #include <chrono>
 #include <random>
 #include <vector>
+#include <cstring>
+#include <iterator>
 
 #include <ITUGames.h>
 
@@ -14,9 +16,9 @@ private:
 
     bool quit = false;
 
-    std::vector<std::vector<char>> frame_empty;
-    std::vector<std::vector<char>> frame;
-    std::vector<std::vector<char>> frame_last;
+    char frame_empty[40][40];
+    char frame[40][40];
+    char frame_last[40][40] ;
 
     int frame_x;
     int frame_y;

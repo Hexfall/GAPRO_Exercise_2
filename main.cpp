@@ -43,10 +43,3 @@ void RenderText(std::string text, int x, int y) {
         ITUGames::Console::RenderCharacter(text[i], x+i, y);
     }
 }
-
-void LongComputation() {
-	// get a random number between 0.01 and 0.016
-	double sleep_time = (10 + std::rand() % 6) / 1000;
-
-	ITUGames::Utils::PreciseSleep(std::chrono::duration<double>(sleep_time));
-}
