@@ -4,6 +4,8 @@
 
 #include "ITUGames.h"
 
+#include <Engine.h>
+
 #pragma region Engine State
 
 std::chrono::time_point<std::chrono::steady_clock>	time_start;
@@ -25,33 +27,13 @@ std::chrono::duration<double>                       frame_time;
 
 #pragma endregion // Game State
 
-#define FRAME_CAP 60
-#define FRAME_CAP_MS std::chrono::duration<double>(1.0/FRAME_CAP)
-
 void LongComputation();
 void RenderText(std::string text, int x, int y);
 
 int main() {
-	// setup
-	std::srand(std::time(nullptr)); // initializes random generator
+    Engine engine;
 
-	while (true) {
-		time_start = std::chrono::steady_clock::now();
-        ITUGames::Console::ClearScreen();
-
-		LongComputation();
-
-		time_end = std::chrono::steady_clock::now();
-        computation_time = time_end - time_start;
-
-
-
-        RenderText("Elapsed : " + std::to_string(frame_time.count() * 1000) + "ms", 1, 0);
-        RenderText("FPS     : " + std::to_string(1.0 / frame_time.count()), 1, 2);
-		ITUGames::Utils::PreciseSleep(FRAME_CAP_MS - computation_time);
-
-        frame_time = std::chrono::steady_clock::now() - time_start;
-	}
+    engine.GameLoop();
 
 	return 0;
 }
