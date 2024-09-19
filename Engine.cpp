@@ -15,6 +15,15 @@ double Engine::GetFPS() {
 void Engine::Init() {
     this->frame_cap_ms = std::chrono::duration<double>(1.0/this->frame_cap);
     std::srand(std::time(nullptr)); // initializes random generator
+
+    this->frame_x = ITUGames::Console::GetTerminalWidth();
+    this->frame_y = ITUGames::Console::GetTerminalHeight();
+
+    for (int i = 0; i < this->frame_x;i++)
+        this->frame_empty.push_back(std::vector<char>(this->frame_y, ESC));
+
+    std::copy(this->frame_empty.begin(), this->frame_empty.end(), this->frame_last.begin());
+
     ITUGames::Console::ClearScreen(); // Clears screen and primes it for game.
 }
 
