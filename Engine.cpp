@@ -21,13 +21,11 @@ void Engine::Init() {
     this->frame_x = ITUGames::Console::GetTerminalWidth();
     this->frame_y = ITUGames::Console::GetTerminalHeight();
 
-    //for (int i = 0; i < this->frame_x;i++)
-        //this->frame_empty.push_back(std::vector<char>(this->frame_y, ESC));
-
-    //this->frame_last = std::vector<std::vector<char>>(this->frame_empty);
-
-    std::memset(this->frame_empty, ESC, sizeof this->frame_empty)
-
+    for (int i = 0; i < this->frame_x*this->frame_y; i++) {
+        this->frame.push_back(ESC);
+        this->frame_last.push_back(ESC);
+    }
+    ITUGames::Console::HideCursor();
     ITUGames::Console::ClearScreen(); // Clears screen and primes it for game.
 }
 
@@ -52,36 +50,38 @@ void Engine::GameLoop() {
 }
 
 void Engine::ProcessEvent() {
-
+    char in = char(std::tolower(ITUGames::Console::GetCharacter()));
 }
 
 void Engine::Update() {
     LongComputation();
 }
 
+void Engine::SetFrameChar(char c, int x, int y) {
+    if (0 <= x && x < this->frame_x)
+        if (0 <= y && y < this->frame_y)
+            this->frame[y*this->frame_x + x] = c;
+}
+
 void Engine::Render() {
     // Create empty frame
-    //this->frame = std::vector<std::vector<char>>(this->frame_empty);
-    std::copy(std::begin(this->frame_empty), std::end(this->frame_empty), std::begin(this->frame))
+    std::fill(this->frame.begin(), this->frame.end(), ESC);
 
     // Fill in frame
     std::string fps_string = "FPS : " + std::to_string(this->GetFPS());
     for (int i = 0; i < fps_string.length(); i++)
-        frame[i][0] = fps_string.at(i);
+        this->SetFrameChar(fps_string.at(i), i, 0);
 
     // Compare to old frame and update
-    /*
-    for (int x = 0; x < this->frame_x; x++) {
-        for (int y = 0; y < this->frame_y; y++) {
-            if (this->frame[x][y] != this->frame_last[x][y]) {
-                // ITUGames::Console::RenderCharacter(this->frame[x][y], x+1, y+1);
+    for (int y = 0; y < this->frame_y; y++) {
+        for (int x = 0; x < this->frame_x; x++) {
+            int index = this->frame_x*y + x;
+            if (this->frame[index] != this->frame_last[index]) {
+                ITUGames::Console::RenderCharacter(this->frame[index], x+1, y+1);
+                this->frame_last[index] = this->frame[index];
             }
         }
-    }*/
-
-    // Keep copy of frame for next Render()
-
-    //this->frame_last = std::vector<std::vector<char>>(this->frame);
+    }
 }
 
 void LongComputation() {

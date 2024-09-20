@@ -3,10 +3,13 @@
 #include <chrono>
 #include <random>
 #include <vector>
+#include <functional>
+#include <map>
 #include <cstring>
 #include <iterator>
 
 #include <ITUGames.h>
+#include <InputManager.h>
 
 struct Engine {
 private:
@@ -16,9 +19,8 @@ private:
 
     bool quit = false;
 
-    char frame_empty[40][40];
-    char frame[40][40];
-    char frame_last[40][40] ;
+    std::vector<char> frame;
+    std::vector<char> frame_last;
 
     int frame_x;
     int frame_y;
@@ -39,4 +41,7 @@ public:
     void ProcessEvent();
     void Update();
     void Render();
+    void SetFrameChar(char c, int x, int y);
+
+    InputManager inputManager;
 };
