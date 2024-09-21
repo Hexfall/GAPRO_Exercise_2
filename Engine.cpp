@@ -25,6 +25,7 @@ void Engine::Init() {
         this->frame.push_back(ESC);
         this->frame_last.push_back(ESC);
     }
+
     ITUGames::Console::HideCursor();
     ITUGames::Console::ClearScreen(); // Clears screen and primes it for game.
 }
@@ -50,7 +51,7 @@ void Engine::GameLoop() {
 }
 
 void Engine::ProcessEvent() {
-    char in = char(std::tolower(ITUGames::Console::GetCharacter()));
+    this->inputManager.HandleInput();
 }
 
 void Engine::Update() {

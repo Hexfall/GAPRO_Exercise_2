@@ -3,5 +3,11 @@
 #include <Engine.h>
 
 struct GameObject {
-    Engine *engine;
+private:
+    Engine* engine;
+    int count;
+
+public:
+    GameObject(Engine* e);
+    void IncrementW();
 };

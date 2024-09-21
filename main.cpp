@@ -5,6 +5,7 @@
 #include "ITUGames.h"
 
 #include <Engine.h>
+#include <GameObject.h>
 
 #pragma region Engine State
 
@@ -32,6 +33,7 @@ void RenderText(std::string text, int x, int y);
 
 int main() {
     Engine engine;
+    GameObject go(&engine);
 
     engine.GameLoop();
 
