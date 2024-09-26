@@ -6,6 +6,7 @@
 
 #include <Engine.h>
 #include <GameObject.h>
+#include <Component.h>
 
 #pragma region Engine State
 
@@ -34,6 +35,7 @@ void RenderText(std::string text, int x, int y);
 int main() {
     Engine engine;
     GameObject go(&engine);
+    Component c(&go);
 
     engine.GameLoop();
 

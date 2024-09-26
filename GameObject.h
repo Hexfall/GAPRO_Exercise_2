@@ -1,13 +1,18 @@
 #pragma once
 
 #include <Engine.h>
+#include <vector>
+
+struct Component;
 
 struct GameObject {
 private:
-    Engine* engine;
-    int count;
+    std::vector<Component*> components;
 
 public:
+    Engine* engine;
     GameObject(Engine* e);
-    void IncrementW();
+    template <class T>
+    T* GetComponent();
+    void AddComponent(Component *c);
 };

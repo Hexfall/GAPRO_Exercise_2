@@ -11,11 +11,11 @@ void InputManager::HandleInput() {
     }
 }
 
-void InputManager::Subscribe(char c, GameObject &go, void (GameObject::*func)()) {
+void InputManager::Subscribe(char c, Component &go, void (Component::*func)()) {
     c = char(std::tolower(c));
     auto res = this->keyCallbacks.find(c);
     if (res == this->keyCallbacks.end()) {
-        this->keyCallbacks[c] = std::vector<std::pair<GameObject*, void (GameObject::*)()>>();
+        this->keyCallbacks[c] = std::vector<std::pair<Component*, void (Component::*)()>>();
         res = this->keyCallbacks.find(c);
     }
 

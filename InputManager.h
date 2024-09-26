@@ -8,13 +8,13 @@
 #include <cstring>
 #include <utility>
 
-struct GameObject;
+struct Component;
 
 struct InputManager {
 private:
-    std::map<char, std::vector<std::pair<GameObject*, void (GameObject::*)()>>> keyCallbacks;
+    std::map<char, std::vector<std::pair<Component*, void (Component::*)()>>> keyCallbacks;
 
 public:
-    void Subscribe(char c, GameObject& go, void (GameObject::* func)());
+    void Subscribe(char c, Component& go, void (Component::* func)());
     void HandleInput();
 };
