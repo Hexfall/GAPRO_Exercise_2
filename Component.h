@@ -9,6 +9,7 @@ private:
 
 public:
     Component(GameObject* go);
+    ~Component();
     void Init();
     void SubscribeToInput(char c, void (Component::* func)());
     void IncrementW();
