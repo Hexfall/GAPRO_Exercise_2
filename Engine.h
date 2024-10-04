@@ -7,9 +7,13 @@
 #include <map>
 #include <cstring>
 #include <iterator>
+#include <utility>
 
 #include <ITUGames.h>
 #include <InputManager.h>
+#include <Renderable.h>
+
+struct Component;
 
 struct Engine {
 private:
@@ -21,6 +25,7 @@ private:
 
     std::vector<char> frame;
     std::vector<char> frame_last;
+    std::vector<Renderable*> renderables;
 
     int frame_x;
     int frame_y;
@@ -42,6 +47,7 @@ public:
     void Update();
     void Render();
     void SetFrameChar(char c, int x, int y);
+    void AddRenderable(Renderable* r);
 
     InputManager inputManager;
 };

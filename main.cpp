@@ -7,6 +7,7 @@
 #include <Engine.h>
 #include <GameObject.h>
 #include <Component.h>
+#include <SnakeBody.h>
 
 #pragma region Engine State
 
@@ -35,7 +36,10 @@ void RenderText(std::string text, int x, int y);
 int main() {
     Engine engine;
     GameObject go(&engine);
-    Component c(&go);
+    go.loc_y = 20;
+    go.loc_x = 20;
+    SnakeBody s(&go);
+    s.Init();
 
     engine.GameLoop();
 

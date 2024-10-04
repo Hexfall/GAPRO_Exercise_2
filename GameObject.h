@@ -10,6 +10,8 @@ private:
     std::vector<Component*> components;
 
 public:
+    int loc_x;
+    int loc_y;
     Engine* engine;
     GameObject(Engine* e);
     template <typename T>
@@ -33,5 +35,3 @@ public:
         }
     }
 };
-
-#include <Component.h>

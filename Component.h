@@ -4,13 +4,13 @@
 
 struct Component {
 private:
-    GameObject* gameObject;
-    int count;
 
 public:
+    int count;
+    GameObject* gameObject;
     Component(GameObject* go);
     ~Component();
-    void Init();
+    virtual void Init();
     void SubscribeToInput(char c, void (Component::* func)());
     void IncrementW();
 };

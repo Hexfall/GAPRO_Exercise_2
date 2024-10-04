@@ -2,18 +2,13 @@
 
 Component::Component(GameObject* go) {
     this->gameObject = go;
-    this->Init();
-    auto x = go->GetComponent<typeof(*this)>();
 }
 
 Component::~Component() {
     this->gameObject->RemoveComponent<typeof(*this)>();
 }
 
-void Component::Init() {
-    this->count = 0;
-    this->SubscribeToInput('w', &Component::IncrementW);
-}
+void Component::Init() {}
 
 void Component::IncrementW() {
     this->count++;

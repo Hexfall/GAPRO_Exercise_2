@@ -73,6 +73,10 @@ void Engine::Render() {
     for (int i = 0; i < fps_string.length(); i++)
         this->SetFrameChar(fps_string.at(i), i, 0);
 
+    for (auto r : this->renderables) {
+        r->Render();
+    }
+
     // Compare to old frame and update
     for (int y = 0; y < this->frame_y; y++) {
         for (int x = 0; x < this->frame_x; x++) {
@@ -83,6 +87,10 @@ void Engine::Render() {
             }
         }
     }
+}
+
+void Engine::AddRenderable(Renderable* r) {
+    this->renderables.push_back(r);
 }
 
 void LongComputation() {
