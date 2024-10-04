@@ -12,6 +12,7 @@
 #include <ITUGames.h>
 #include <InputManager.h>
 #include <Renderable.h>
+#include <Updateable.h>
 
 struct Component;
 
@@ -26,6 +27,7 @@ private:
     std::vector<char> frame;
     std::vector<char> frame_last;
     std::vector<Renderable*> renderables;
+    std::vector<Updateable*> updateables;
 
     int frame_x;
     int frame_y;
@@ -48,6 +50,7 @@ public:
     void Render();
     void SetFrameChar(char c, int x, int y);
     void AddRenderable(Renderable* r);
+    void AddUpdateable(Updateable* u);
 
     InputManager inputManager;
 };

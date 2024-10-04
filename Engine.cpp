@@ -55,6 +55,8 @@ void Engine::ProcessEvent() {
 }
 
 void Engine::Update() {
+    for (auto u : this->updateables)
+        u->Update(this->time_elapsed);
     LongComputation();
 }
 
@@ -91,6 +93,10 @@ void Engine::Render() {
 
 void Engine::AddRenderable(Renderable* r) {
     this->renderables.push_back(r);
+}
+
+void Engine::AddUpdateable(Updateable *u) {
+    this->updateables.push_back(u);
 }
 
 void LongComputation() {
