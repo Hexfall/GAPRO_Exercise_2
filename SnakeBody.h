@@ -17,6 +17,5 @@ public:
     SnakeBody(GameObject* go);
     void Update(std::chrono::duration<double> deltaTime);
     void Init();
-    void Render();
     void Move(bool addNew);
 };

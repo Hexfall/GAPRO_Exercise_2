@@ -6,5 +6,5 @@ struct Renderable {
 public:
     GameObject* gameObject;
     Renderable(GameObject* go);
-    virtual void Render();
+    virtual void Render() {};
 };

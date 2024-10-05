@@ -19,5 +19,3 @@ void TextRenderable::Render() {
                 this->gameObject->loc_y
                 );
 }
-
-void Renderable::Render() {}

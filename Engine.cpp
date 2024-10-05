@@ -75,9 +75,9 @@ void Engine::Render() {
     std::fill(this->frame.begin(), this->frame.end(), ' ');
 
     // Fill in frame
-    std::string fps_string = "FPS : " + std::to_string(this->GetFPS());
+    /*std::string fps_string = "FPS : " + std::to_string(this->GetFPS());
     for (int i = 0; i < fps_string.length(); i++)
-        this->SetFrameChar(fps_string.at(i), i, 0);
+        this->SetFrameChar(fps_string.at(i), i, 0);*/
 
     for (auto r : this->renderables) {
         r->Render();

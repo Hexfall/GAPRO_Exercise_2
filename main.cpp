@@ -8,6 +8,7 @@
 #include <GameObject.h>
 #include <Component.h>
 #include <SnakeBody.h>
+#include <Metadata.h>
 
 #pragma region Engine State
 
@@ -35,11 +36,12 @@ void RenderText(std::string text, int x, int y);
 
 int main() {
     Engine engine;
+    GameObject metadataGO(&engine);
+    Metadata metadata(&metadataGO);
     GameObject go(&engine);
     go.loc_y = 20;
     go.loc_x = 20;
     SnakeBody s(&go);
-    s.Init();
 
     engine.GameLoop();
 

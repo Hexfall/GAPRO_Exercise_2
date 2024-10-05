@@ -24,4 +24,6 @@ add_executable(Exercise_2
         Renderable.cpp
         TextRenderable.h
         TextRenderable.cpp
+        Metadata.h
+        Metadata.cpp
         main.cpp)
