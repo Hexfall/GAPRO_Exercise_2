@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine.h>
+#include <Initable.h>
 #include <vector>
 
 struct Component;

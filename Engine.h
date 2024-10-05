@@ -11,6 +11,7 @@
 
 #include <ITUGames.h>
 #include <InputManager.h>
+#include <Initable.h>
 #include <Renderable.h>
 #include <Updateable.h>
 
@@ -26,6 +27,7 @@ private:
 
     std::vector<char> frame;
     std::vector<char> frame_last;
+    std::vector<Initable*>   initables;
     std::vector<Renderable*> renderables;
     std::vector<Updateable*> updateables;
 
@@ -49,6 +51,8 @@ public:
     void Update();
     void Render();
     void SetFrameChar(char c, int x, int y);
+    void HandleInitables();
+    void AddInitable(Initable* i);
     void AddRenderable(Renderable* r);
     void AddUpdateable(Updateable* u);
 

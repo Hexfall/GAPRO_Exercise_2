@@ -18,16 +18,18 @@ void Engine::Init() {
     this->frame_cap_ms = std::chrono::duration<double>(1.0/this->frame_cap);
     std::srand(std::time(nullptr)); // initializes random generator
 
-    this->frame_x = ITUGames::Console::GetTerminalWidth();
-    this->frame_y = ITUGames::Console::GetTerminalHeight();
+    this->frame_y = ITUGames::Console::GetTerminalWidth();
+    this->frame_x = ITUGames::Console::GetTerminalHeight();
 
     for (int i = 0; i < this->frame_x*this->frame_y; i++) {
-        this->frame.push_back(ESC);
-        this->frame_last.push_back(ESC);
+        this->frame.push_back(' ');
+        this->frame_last.push_back(' ');
     }
 
     ITUGames::Console::HideCursor();
     ITUGames::Console::ClearScreen(); // Clears screen and primes it for game.
+
+    this->HandleInitables();
 }
 
 void Engine::GameLoop() {
@@ -55,8 +57,10 @@ void Engine::ProcessEvent() {
 }
 
 void Engine::Update() {
-    for (auto u : this->updateables)
+    for (auto u: this->updateables) {
         u->Update(this->time_elapsed);
+        this->HandleInitables();
+    }
     LongComputation();
 }
 
@@ -68,7 +72,7 @@ void Engine::SetFrameChar(char c, int x, int y) {
 
 void Engine::Render() {
     // Create empty frame
-    std::fill(this->frame.begin(), this->frame.end(), ESC);
+    std::fill(this->frame.begin(), this->frame.end(), ' ');
 
     // Fill in frame
     std::string fps_string = "FPS : " + std::to_string(this->GetFPS());
@@ -89,6 +93,17 @@ void Engine::Render() {
             }
         }
     }
+}
+
+void Engine::HandleInitables() {
+    while (!this->initables.empty()) {
+        this->initables.back()->Init();
+        this->initables.pop_back();
+    }
+}
+
+void Engine::AddInitable(Initable* i) {
+    this->initables.push_back(i);
 }
 
 void Engine::AddRenderable(Renderable* r) {

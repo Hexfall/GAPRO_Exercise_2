@@ -17,6 +17,7 @@ add_executable(Exercise_2
         InputManager.cpp
         InputManager.h
         ITUGames.h
+        Initable.h
         Updateable.h
         Updateable.cpp
         Renderable.h
