@@ -20,6 +20,7 @@ add_executable(Exercise_2
         Initable.h
         Updateable.h
         Updateable.cpp
+        Inputable.h
         Renderable.h
         Renderable.cpp
         TextRenderable.h

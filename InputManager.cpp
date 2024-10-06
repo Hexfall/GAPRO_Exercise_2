@@ -5,19 +5,20 @@ void InputManager::HandleInput() {
 
     auto res = this->keyCallbacks.find(c);
     if (res != this->keyCallbacks.end()) {
-        for (auto p : res->second) {
-            (*p.first.*p.second)();
+        InputEvent event(c);
+        for (auto inputable : res->second) {
+            inputable->HandleInput(event);
         }
     }
 }
 
-void InputManager::Subscribe(char c, Component &go, void (Component::*func)()) {
+void InputManager::Subscribe(char c, Inputable* inputable) {
     c = char(std::tolower(c));
     auto res = this->keyCallbacks.find(c);
     if (res == this->keyCallbacks.end()) {
-        this->keyCallbacks[c] = std::vector<std::pair<Component*, void (Component::*)()>>();
+        this->keyCallbacks[c] = std::vector<Inputable*>();
         res = this->keyCallbacks.find(c);
     }
 
-    res->second.push_back(std::make_pair(&go, func));
+    res->second.push_back(inputable);
 }

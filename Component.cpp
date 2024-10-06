@@ -15,7 +15,3 @@ void Component::IncrementW() {
     this->count++;
     std::cout << "inc" << this->count << std::endl;
 }
-
-void Component::SubscribeToInput(char c, void (Component::*func)()) {
-    this->gameObject->engine->inputManager.Subscribe(c, *this, func);
-}

@@ -11,6 +11,5 @@ public:
     Component(GameObject* go);
     ~Component();
     virtual void Init();
-    void SubscribeToInput(char c, void (Component::* func)());
     void IncrementW();
 };
