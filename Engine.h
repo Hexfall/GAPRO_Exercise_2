@@ -31,9 +31,6 @@ private:
     std::vector<Renderable*> renderables;
     std::vector<Updateable*> updateables;
 
-    int frame_x;
-    int frame_y;
-
 public:
     std::chrono::time_point<std::chrono::steady_clock> time_start;
     std::chrono::time_point<std::chrono::steady_clock> time_end;
@@ -44,6 +41,9 @@ public:
     double GetFPS();
     double GetTimeElapsedMs();
     double GetTimeComputationMs();
+
+    int frame_x;
+    int frame_y;
 
     void GameLoop();
     void Init();

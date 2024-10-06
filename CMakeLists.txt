@@ -27,4 +27,6 @@ add_executable(Exercise_2
         TextRenderable.cpp
         Metadata.h
         Metadata.cpp
+        Apple.h
+        Apple.cpp
         main.cpp)
