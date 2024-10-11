@@ -102,11 +102,11 @@ void Engine::AddInitable(std::shared_ptr<Initable> i) {
     this->initables.push_back(i);
 }
 
-void Engine::AddRenderable(Renderable* r) {
+void Engine::AddRenderable(std::shared_ptr<Renderable> r) {
     this->renderables.push_back(r);
 }
 
-void Engine::AddUpdateable(Updateable *u) {
+void Engine::AddUpdateable(std::shared_ptr<Updateable> u) {
     this->updateables.push_back(u);
 }
 

@@ -30,8 +30,8 @@ private:
     std::vector<char> frame;
     std::vector<char> frame_last;
     std::vector<std::shared_ptr<Initable>>   initables;
-    std::vector<Renderable*> renderables;
-    std::vector<Updateable*> updateables;
+    std::vector<std::shared_ptr<Renderable>> renderables;
+    std::vector<std::shared_ptr<Updateable>> updateables;
     std::vector<std::shared_ptr<GameObject>> gameObjects;
 
 public:
@@ -56,8 +56,8 @@ public:
     void SetFrameChar(char c, int x, int y);
     void HandleInitables();
     void AddInitable(std::shared_ptr<Initable> i);
-    void AddRenderable(Renderable* r);
-    void AddUpdateable(Updateable* u);
+    void AddRenderable(std::shared_ptr<Renderable> r);
+    void AddUpdateable(std::shared_ptr<Updateable> u);
     std::shared_ptr<GameObject> CreateGameObject();
 
     InputManager inputManager;

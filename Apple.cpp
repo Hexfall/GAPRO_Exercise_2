@@ -1,8 +1,8 @@
 #include <Apple.h>
 
 void Apple::Init() {
-    this->gameObject->engine->AddRenderable(&this->icon);
-    this->icon.SetValue("@");
+    this->gameObject->engine->AddRenderable(this->icon);
+    this->icon->SetValue("@");
     this->Relocate();
 }
 

@@ -1,39 +1,26 @@
 #include <SnakeBody.h>
 
 void SnakeBody::Init() {
-    this->renderable.SetValue("O");
-    this->gameObject->engine->AddRenderable(&this->renderable);
-    this->gameObject->engine->AddUpdateable(this);
-    this->gameObject->engine->inputManager.Subscribe('w', this);
-    this->gameObject->engine->inputManager.Subscribe('a', this);
-    this->gameObject->engine->inputManager.Subscribe('s', this);
-    this->gameObject->engine->inputManager.Subscribe('d', this);
+    this->renderable->SetValue("O");
+    this->gameObject->engine->AddRenderable(this->renderable);
+    this->gameObject->engine->AddUpdateable(
+            std::dynamic_pointer_cast<Updateable>(this->gameObject->GetComponent<typeof(*this)>()));
 }
 
 void SnakeBody::Update(std::chrono::duration<double> deltaTime) {
     if (std::rand() % 500 == 0) {
         this->isFlipped = !this->isFlipped;
-        this->renderable.SetValue(this->isFlipped ? "0" : "O");
+        this->renderable->SetValue(this->isFlipped ? "0" : "O");
     }
 }
 
-void SnakeBody::Move(bool addNew) {
-    this->gameObject->Translate(1, 0);
-}
-
-void SnakeBody::HandleInput(InputEvent inputEvent) {
-    switch (inputEvent.key) {
-        case 'w':
-            this->gameObject->Translate(0, -1);
-            break;
-        case 'a':
-            this->gameObject->Translate(-1, 0);
-            break;
-        case 's':
-            this->gameObject->Translate(0, 1);
-            break;
-        case 'd':
-            this->gameObject->Translate(1, 0);
-            break;
+void SnakeBody::Move(glm::vec3 newPos, bool addNew) {
+    if (this->next) {
+        this->next->Move(this->gameObject->position, false);
+    } else if (addNew) {
+        auto go = this->gameObject->engine->CreateGameObject();
+        go->SetPosition(this->gameObject->position);
+        this->next = go->AddComponent<SnakeBody>();
     }
+    this->gameObject->SetPosition(newPos);
 }

@@ -8,16 +8,15 @@
 
 #include <random>
 
-struct SnakeBody : Component, Updateable, Initable, Inputable {
+struct SnakeBody : Component, Updateable, Initable {
 private:
-    SnakeBody* next;
-    TextRenderable renderable;
+    std::shared_ptr<SnakeBody> next;
+    std::shared_ptr<TextRenderable> renderable;
     bool isFlipped = false;
 
 public:
-    SnakeBody(GameObject* go) : Component(go), renderable(go) {}
+    SnakeBody(GameObject* go) : Component(go), renderable(new TextRenderable(go)) {this->next = nullptr;}
     void Update(std::chrono::duration<double> deltaTime);
     void Init();
-    void Move(bool addNew);
-    void HandleInput(InputEvent inputEvent);
+    void Move(glm::vec3 newPos, bool addNew);
 };

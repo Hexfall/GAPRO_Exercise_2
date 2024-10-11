@@ -7,6 +7,7 @@
 #include <Engine.h>
 #include <GameObject.h>
 #include <SnakeBody.h>
+#include <SnakeHead.h>
 #include <Metadata.h>
 #include <Apple.h>
 
@@ -44,6 +45,7 @@ int main() {
     go->position.x = 20;
     go->position.y = 20;
     go->AddComponent<SnakeBody>();
+    go->AddComponent<SnakeHead>();
 
     engine.GameLoop();
 

@@ -18,3 +18,11 @@ void GameObject::Translate(glm::mat3 m) {
 void GameObject::Translate(glm::vec2 v) {
     this->Translate(v.x, v.y);
 }
+
+void GameObject::SetPosition(glm::vec2 v) {
+    this->SetPosition(glm::vec3(v, 1));
+}
+
+void GameObject::SetPosition(glm::vec3 v) {
+    this->position = v;
+}
