@@ -2,7 +2,6 @@
 
 Component::Component(GameObject* go) {
     this->gameObject = go;
-    this->gameObject->AddComponent(this);
 }
 
 Component::~Component() {
