@@ -15,7 +15,7 @@ void TextRenderable::Render() {
     for (int i = 0; i < this->value.length(); i++)
         this->gameObject->engine->SetFrameChar(
                 this->value.at(i),
-                this->gameObject->loc_x + i,
-                this->gameObject->loc_y
+                this->gameObject->position.x + i,
+                this->gameObject->position.y
                 );
 }

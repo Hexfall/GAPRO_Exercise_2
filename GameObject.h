@@ -1,21 +1,26 @@
 #pragma once
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include <Engine.h>
 #include <Initable.h>
 #include <vector>
 #include <memory>
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
 
 struct Component;
+struct Transform;
 
 struct GameObject {
 private:
     std::vector<std::shared_ptr<Component>> components;
 
 public:
-    int loc_x;
-    int loc_y;
+    glm::vec3 position;
     Engine* engine;
     GameObject(Engine* e);
+    void Translate(float x, float y);
     template <typename T>
     std::shared_ptr<T> GetComponent();
     template <typename T>
@@ -28,7 +33,6 @@ public:
 
 template <typename T>
 inline std::shared_ptr<T> GameObject::GetComponent() {
-    std::cout << "\nthere are " << this->components.size() << " components\n";
     for (int i = 0; i < this->components.size(); i++) {
         auto TInstance = std::dynamic_pointer_cast<T>(this->components[i]);
         if (TInstance)

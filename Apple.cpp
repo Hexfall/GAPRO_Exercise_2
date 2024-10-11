@@ -7,6 +7,6 @@ void Apple::Init() {
 }
 
 void Apple::Relocate() {
-    this->gameObject->loc_x = std::rand() % this->gameObject->engine->frame_x;
-    this->gameObject->loc_y = std::rand() % this->gameObject->engine->frame_y;
+    this->gameObject->position.x = std::rand() % this->gameObject->engine->frame_x;
+    this->gameObject->position.y = std::rand() % this->gameObject->engine->frame_y;
 }

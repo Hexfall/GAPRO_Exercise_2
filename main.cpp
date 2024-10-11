@@ -41,8 +41,8 @@ int main() {
     auto appleObject = engine.CreateGameObject();
     appleObject->AddComponent<Apple>();
     auto go = engine.CreateGameObject();
-    go->loc_y = 20;
-    go->loc_x = 20;
+    go->position.x = 20;
+    go->position.y = 20;
     go->AddComponent<SnakeBody>();
 
     engine.GameLoop();

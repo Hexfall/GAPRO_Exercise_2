@@ -8,6 +8,7 @@ include_directories(.)
 add_executable(Exercise_2
         Component.cpp
         Component.h
+        Transform.h
         SnakeBody.cpp
         SnakeBody.h
         Engine.cpp

@@ -18,22 +18,22 @@ void SnakeBody::Update(std::chrono::duration<double> deltaTime) {
 }
 
 void SnakeBody::Move(bool addNew) {
-    this->gameObject->loc_x += 1;
+    this->gameObject->Translate(1, 0);
 }
 
 void SnakeBody::HandleInput(InputEvent inputEvent) {
     switch (inputEvent.key) {
         case 'w':
-            this->gameObject->loc_y--;
+            this->gameObject->Translate(0, -1);
             break;
         case 'a':
-            this->gameObject->loc_x--;
+            this->gameObject->Translate(-1, 0);
             break;
         case 's':
-            this->gameObject->loc_y++;
+            this->gameObject->Translate(0, 1);
             break;
         case 'd':
-            this->gameObject->loc_x++;
+            this->gameObject->Translate(1, 0);
             break;
     }
 }
