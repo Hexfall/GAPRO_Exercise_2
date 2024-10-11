@@ -21,6 +21,8 @@ public:
     Engine* engine;
     GameObject(Engine* e);
     void Translate(float x, float y);
+    void Translate(glm::mat3 m);
+    void Translate(glm::vec2 v);
     template <typename T>
     std::shared_ptr<T> GetComponent();
     template <typename T>
