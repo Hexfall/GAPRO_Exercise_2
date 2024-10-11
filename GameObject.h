@@ -47,6 +47,10 @@ inline std::shared_ptr<T> GameObject::AddComponent() {
 
     this->components.emplace_back(new T(this));
 
+    std::shared_ptr<Initable> initable = std::dynamic_pointer_cast<Initable>(this->components[index]);
+    if (initable)
+        this->engine->AddInitable(initable);
+
     return std::dynamic_pointer_cast<T>(this->components[index]);
 }
 

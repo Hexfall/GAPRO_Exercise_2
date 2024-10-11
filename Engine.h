@@ -8,6 +8,7 @@
 #include <cstring>
 #include <iterator>
 #include <utility>
+#include <memory>
 
 #include <ITUGames.h>
 #include <InputManager.h>
@@ -27,7 +28,7 @@ private:
 
     std::vector<char> frame;
     std::vector<char> frame_last;
-    std::vector<Initable*>   initables;
+    std::vector<std::shared_ptr<Initable>>   initables;
     std::vector<Renderable*> renderables;
     std::vector<Updateable*> updateables;
 
@@ -52,7 +53,7 @@ public:
     void Render();
     void SetFrameChar(char c, int x, int y);
     void HandleInitables();
-    void AddInitable(Initable* i);
+    void AddInitable(std::shared_ptr<Initable> i);
     void AddRenderable(Renderable* r);
     void AddUpdateable(Updateable* u);
 

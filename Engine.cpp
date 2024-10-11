@@ -102,7 +102,7 @@ void Engine::HandleInitables() {
     }
 }
 
-void Engine::AddInitable(Initable* i) {
+void Engine::AddInitable(std::shared_ptr<Initable> i) {
     this->initables.push_back(i);
 }
 

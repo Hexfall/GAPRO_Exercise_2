@@ -15,7 +15,7 @@ private:
     bool isFlipped = false;
 
 public:
-    SnakeBody(GameObject* go);
+    SnakeBody(GameObject* go) : Component(go), renderable(go) {}
     void Update(std::chrono::duration<double> deltaTime);
     void Init();
     void Move(bool addNew);

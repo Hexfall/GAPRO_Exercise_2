@@ -1,12 +1,7 @@
 #include <SnakeBody.h>
 
-SnakeBody::SnakeBody(GameObject *go)
-    : Component(go), renderable(go) {
-    this->renderable.SetValue("O");
-    this->gameObject->engine->AddInitable(this);
-}
-
 void SnakeBody::Init() {
+    this->renderable.SetValue("O");
     this->gameObject->engine->AddRenderable(&this->renderable);
     this->gameObject->engine->AddUpdateable(this);
     this->gameObject->engine->inputManager.Subscribe('w', this);

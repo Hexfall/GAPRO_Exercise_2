@@ -7,7 +7,7 @@
 
 struct Apple : Component, Initable {
 public:
-    Apple(GameObject* go);
+    Apple(GameObject* go): Component(go), icon(go) {}
     TextRenderable icon;
     void Init();
     void Relocate();

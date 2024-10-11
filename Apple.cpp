@@ -1,10 +1,5 @@
 #include <Apple.h>
 
-Apple::Apple(GameObject *go)
-    : Component(go), icon(go) {
-    this->gameObject->engine->AddInitable(this);
-}
-
 void Apple::Init() {
     this->gameObject->engine->AddRenderable(&this->icon);
     this->icon.SetValue("@");

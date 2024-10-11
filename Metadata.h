@@ -13,7 +13,7 @@ private:
     TextRenderable label;
 
 public:
-    Metadata(GameObject* go);
+    Metadata(GameObject* go): Component(go), label(go) {}
     void Init();
     void Update(std::chrono::duration<double> deltaTime);
 };
