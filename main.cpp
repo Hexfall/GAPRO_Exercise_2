@@ -36,14 +36,14 @@ void RenderText(std::string text, int x, int y);
 
 int main() {
     Engine engine;
-    GameObject metadataGO(&engine);
-    metadataGO.AddComponent<Metadata>();
-    GameObject appleObject(&engine);
-    appleObject.AddComponent<Apple>();
-    GameObject go(&engine);
-    go.loc_y = 20;
-    go.loc_x = 20;
-    go.AddComponent<SnakeBody>();
+    auto metadataGO = engine.CreateGameObject();
+    metadataGO->AddComponent<Metadata>();
+    auto appleObject = engine.CreateGameObject();
+    appleObject->AddComponent<Apple>();
+    auto go = engine.CreateGameObject();
+    go->loc_y = 20;
+    go->loc_x = 20;
+    go->AddComponent<SnakeBody>();
 
     engine.GameLoop();
 

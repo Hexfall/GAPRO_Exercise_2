@@ -17,6 +17,7 @@
 #include <Updateable.h>
 
 struct Component;
+struct GameObject;
 
 struct Engine {
 private:
@@ -31,6 +32,7 @@ private:
     std::vector<std::shared_ptr<Initable>>   initables;
     std::vector<Renderable*> renderables;
     std::vector<Updateable*> updateables;
+    std::vector<std::shared_ptr<GameObject>> gameObjects;
 
 public:
     std::chrono::time_point<std::chrono::steady_clock> time_start;
@@ -56,6 +58,9 @@ public:
     void AddInitable(std::shared_ptr<Initable> i);
     void AddRenderable(Renderable* r);
     void AddUpdateable(Updateable* u);
+    std::shared_ptr<GameObject> CreateGameObject();
 
     InputManager inputManager;
 };
+
+#include <GameObject.h>

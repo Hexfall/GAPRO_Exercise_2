@@ -75,10 +75,6 @@ void Engine::Render() {
     std::fill(this->frame.begin(), this->frame.end(), ' ');
 
     // Fill in frame
-    /*std::string fps_string = "FPS : " + std::to_string(this->GetFPS());
-    for (int i = 0; i < fps_string.length(); i++)
-        this->SetFrameChar(fps_string.at(i), i, 0);*/
-
     for (auto r : this->renderables) {
         r->Render();
     }
@@ -119,4 +115,9 @@ void LongComputation() {
     double sleep_time = (10 + std::rand() % 6) / 1000;
 
     ITUGames::Utils::PreciseSleep(std::chrono::duration<double>(sleep_time));
+}
+
+std::shared_ptr<GameObject> Engine::CreateGameObject() {
+    this->gameObjects.emplace_back(new GameObject(this));
+    return this->gameObjects[this->gameObjects.size() - 1];
 }
