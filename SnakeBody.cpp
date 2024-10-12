@@ -26,9 +26,9 @@ void SnakeBody::Move(glm::vec3 v, bool addNew) {
 }
 
 bool SnakeBody::Collides(glm::vec3 v) {
-    if (this->gameObject->position.x == v.x && this->gameObject->position.y == v.y)
+    if (this->gameObject->position == v)
         return true;
     if (this->next)
-        return this-next->Collides(v);
+        return this->next->Collides(v);
     return false;
 }

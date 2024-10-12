@@ -49,9 +49,9 @@ void SnakeHead::Move() {
         this->snakeBody->Move(v, false);
     }
 
-    /*if (this->snakeBody->next && this->snakeBody->next->Collides(this->gameObject->position)) {
+    if (this->snakeBody->next && this->snakeBody->next->Collides(this->gameObject->position)) {
         this->gameObject->engine->Quit();
-    }*/
+    }
 }
 
 void SnakeHead::SetApple(std::shared_ptr<Apple> apple) {
