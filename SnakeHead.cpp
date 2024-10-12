@@ -28,7 +28,6 @@ void SnakeHead::HandleInput(InputEvent inputEvent) {
 }
 
 void SnakeHead::Update(std::chrono::duration<double> deltaTime) {
-    //std::cout << this->timeSinceLastMove.count();
     this->timeSinceLastMove += deltaTime;
     if (this->timeSinceLastMove > this->timeBetweenMoves) {
         this->timeSinceLastMove -= this->timeBetweenMoves;
@@ -41,7 +40,18 @@ void SnakeHead::Move() {
     m[2][0] = this->direction.x;
     m[2][1] = this->direction.y;
     glm::vec3 v = m * this->gameObject->position;
-    this->snakeBody->Move(v, true);
+
+    if (this->apple->gameObject->position == v) {
+        this->snakeBody->Move(v.x, v.y, true);
+        this->apple->Relocate();
+        this->timeBetweenMoves *= 0.9;
+    } else {
+        this->snakeBody->Move(v.x, v.y, false);
+    }
+
+    /*if (this->snakeBody->hasNext && this->snakeBody->next->Collides(this->gameObject->position)) {
+        this->gameObject->engine->Quit();
+    }*/
 }
 
 void SnakeHead::SetApple(std::shared_ptr<Apple> apple) {

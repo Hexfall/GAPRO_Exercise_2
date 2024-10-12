@@ -19,7 +19,7 @@ private:
     std::chrono::duration<double> timeSinceLastMove;
 public:
     SnakeHead(GameObject* gameObject)
-        : Component(gameObject), direction(1, 0), timeBetweenMoves(0.5f), timeSinceLastMove(0) {}
+        : Component(gameObject), direction(1, 0), timeBetweenMoves(0.25f), timeSinceLastMove(0) {}
     void Init();
     void Update(std::chrono::duration<double> deltaTime);
     void HandleInput(InputEvent inputEvent);

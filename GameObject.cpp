@@ -26,3 +26,7 @@ void GameObject::SetPosition(glm::vec2 v) {
 void GameObject::SetPosition(glm::vec3 v) {
     this->position = v;
 }
+
+void GameObject::SetPosition(float x, float y) {
+    this->SetPosition(glm::vec2(x, y));
+}

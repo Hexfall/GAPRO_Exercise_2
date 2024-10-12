@@ -25,6 +25,7 @@ public:
     void Translate(glm::vec2 v);
     void SetPosition(glm::vec2 v);
     void SetPosition(glm::vec3 v);
+    void SetPosition(float x, float y);
     template <typename T>
     std::shared_ptr<T> GetComponent();
     template <typename T>

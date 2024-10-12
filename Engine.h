@@ -60,6 +60,8 @@ public:
     void AddUpdateable(std::shared_ptr<Updateable> u);
     std::shared_ptr<GameObject> CreateGameObject();
 
+    void Quit();
+
     InputManager inputManager;
 };
 

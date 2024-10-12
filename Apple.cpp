@@ -3,7 +3,7 @@
 void Apple::Init() {
     this->gameObject->engine->AddRenderable(this->icon);
     this->icon->SetValue("@");
-    this->Relocate();
+    //this->Relocate();
 }
 
 void Apple::Relocate() {

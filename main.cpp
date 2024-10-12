@@ -45,7 +45,9 @@ int main() {
     go->position.x = 20;
     go->position.y = 20;
     go->AddComponent<SnakeBody>();
-    go->AddComponent<SnakeHead>();
+    auto sh = go->AddComponent<SnakeHead>();
+    sh->SetApple(appleObject->GetComponent<Apple>());
+    appleObject->SetPosition(23, 20);
 
     engine.GameLoop();
 

@@ -58,9 +58,10 @@ void Engine::ProcessEvent() {
 
 void Engine::Update() {
     for (auto u: this->updateables) {
-        u->Update(this->time_elapsed);
-        this->HandleInitables();
+        if (u != nullptr)
+            u->Update(this->time_elapsed);
     }
+    this->HandleInitables();
     LongComputation();
 }
 
@@ -108,6 +109,10 @@ void Engine::AddRenderable(std::shared_ptr<Renderable> r) {
 
 void Engine::AddUpdateable(std::shared_ptr<Updateable> u) {
     this->updateables.push_back(u);
+}
+
+void Engine::Quit() {
+    this->quit = true;
 }
 
 void LongComputation() {

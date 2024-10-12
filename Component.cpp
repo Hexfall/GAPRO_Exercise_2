@@ -5,7 +5,7 @@ Component::Component(GameObject* go) {
 }
 
 Component::~Component() {
-    this->gameObject->RemoveComponent<typeof(*this)>();
+    //this->gameObject->RemoveComponent<typeof(*this)>();
 }
 
 void Component::Init() {}
