@@ -15,10 +15,9 @@ private:
 
 public:
     std::shared_ptr<SnakeBody> next;
-    bool hasNext;
-    SnakeBody(GameObject* go) : Component(go), renderable(new TextRenderable(go)), isFlipped(false), hasNext(false) {this->next = nullptr;}
+    SnakeBody(GameObject* go) : Component(go), renderable(new TextRenderable(go)), isFlipped(false) {this->next = nullptr;}
     void Update(std::chrono::duration<double> deltaTime);
     void Init();
-    void Move(float x, float y, bool addNew);
+    void Move(glm::vec3 v, bool addNew);
     bool Collides(glm::vec3 v);
 };

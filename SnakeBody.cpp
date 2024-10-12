@@ -14,22 +14,21 @@ void SnakeBody::Update(std::chrono::duration<double> deltaTime) {
     }
 }
 
-void SnakeBody::Move(float x, float y, bool addNew) {
-    if (this->hasNext) {
-        this->next->Move(this->gameObject->position.x, this->gameObject->position.y, addNew);
+void SnakeBody::Move(glm::vec3 v, bool addNew) {
+    if (this->next) {
+        this->next->Move(this->gameObject->position, addNew);
     } else if (addNew) {
         auto go = this->gameObject->engine->CreateGameObject();
         this->next = go->AddComponent<SnakeBody>();
-        this->next->Move(this->gameObject->position.x, this->gameObject->position.y, false);
-        this->hasNext = true;
+        this->next->Move(this->gameObject->position, false);
     }
-    this->gameObject->SetPosition(glm::vec2(x, y));
+    this->gameObject->SetPosition(v);
 }
 
 bool SnakeBody::Collides(glm::vec3 v) {
     if (this->gameObject->position.x == v.x && this->gameObject->position.y == v.y)
         return true;
-    if (this->hasNext)
+    if (this->next)
         return this-next->Collides(v);
     return false;
 }

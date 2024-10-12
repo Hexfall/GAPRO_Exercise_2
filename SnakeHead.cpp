@@ -42,14 +42,14 @@ void SnakeHead::Move() {
     glm::vec3 v = m * this->gameObject->position;
 
     if (this->apple->gameObject->position == v) {
-        this->snakeBody->Move(v.x, v.y, true);
+        this->snakeBody->Move(v, true);
         this->apple->Relocate();
         this->timeBetweenMoves *= 0.9;
     } else {
-        this->snakeBody->Move(v.x, v.y, false);
+        this->snakeBody->Move(v, false);
     }
 
-    /*if (this->snakeBody->hasNext && this->snakeBody->next->Collides(this->gameObject->position)) {
+    /*if (this->snakeBody->next && this->snakeBody->next->Collides(this->gameObject->position)) {
         this->gameObject->engine->Quit();
     }*/
 }
