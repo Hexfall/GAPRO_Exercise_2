@@ -13,16 +13,20 @@ void SnakeHead::Init() {
 void SnakeHead::HandleInput(InputEvent inputEvent) {
     switch (inputEvent.key) {
         case 'w':
-            this->direction = glm::vec2(0, -1);
+            if (this->lastDirection.y != 1)
+                this->direction = glm::vec2(0, -1);
             break;
         case 'a':
-            this->direction = glm::vec2(-1, 0);
+            if (this->lastDirection.x != 1)
+                this->direction = glm::vec2(-1, 0);
             break;
         case 's':
-            this->direction = glm::vec2(0, 1);
+            if (this->lastDirection.y != -1)
+                this->direction = glm::vec2(0, 1);
             break;
         case 'd':
-            this->direction = glm::vec2(1, 0);
+            if (this->lastDirection.x != -1)
+                this->direction = glm::vec2(1, 0);
             break;
     }
 }
@@ -44,7 +48,7 @@ void SnakeHead::Move() {
     if (this->apple->gameObject->position == v) {
         this->snakeBody->Move(v, true);
         this->apple->Relocate();
-        this->timeBetweenMoves *= 0.9;
+        this->timeBetweenMoves *= 0.97;
     } else {
         this->snakeBody->Move(v, false);
     }
@@ -52,6 +56,8 @@ void SnakeHead::Move() {
     if (this->snakeBody->next && this->snakeBody->next->Collides(this->gameObject->position)) {
         this->gameObject->engine->Quit();
     }
+
+    this->lastDirection = this->direction;
 }
 
 void SnakeHead::SetApple(std::shared_ptr<Apple> apple) {
